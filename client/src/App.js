@@ -1,24 +1,28 @@
 import { Route, Routes } from "react-router-dom";
 import { useState } from "react";
-import Home from "./pages/Home";
-import { hasAuthenticated } from "./services/AuthApi";
+import "./App.css";
+import Home from "./pages/Home/Home";
+import { hasAuthenticated, logout } from "./services/AuthApi";
 import Auth from "./contexts/Auth";
 import AuthenticatedRoute from "./components/AuthenticatedRoute";
-import Login from "./pages/Login";
+import Login from "./pages/Auth/Login";
+import Signin from "./pages/Auth/Signin";
+import Logout from "./pages/Auth/Logout";
+import Dashboard from "./pages/Dashboard/Dashboard";
 
 function App() {
 
   const [isAuthenticated, setIsAuthenticated] = useState(hasAuthenticated());
 
-  return (
-    <Auth.Provider value={{isAuthenticated, setIsAuthenticated}}>
-      <>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signin" element={<Login />} />
-        </Routes>
-      </>
+  return (    
+    <Auth.Provider value={{isAuthenticated, setIsAuthenticated}} >
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signin" element={<Signin />} />
+        <Route path="/logout" element={<Logout />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Routes>
     </Auth.Provider>
   );
 }

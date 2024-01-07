@@ -1,8 +1,20 @@
-const { db } = require('./../db');
+const { db } = require('../db');
 const bcrypt = require('bcrypt');
+const login = require('./login');
 
 function signin(req, res){
     const { username, email, password } = req.body;
+
+    // Vérifiez si l'utilisateur existe déjà
+    db.query(
+        "SELECT * FROM t_user WHERE email = ?",
+        [email],
+        (err, result) => {
+            if(result && result.length == 1){
+                return res.send({success: false, message: "Cet email est déjà utilisé"});
+            }
+        }
+    )
 
     bcrypt.hash(password, 10, (err, hash) => {
         db.query(
@@ -11,9 +23,10 @@ function signin(req, res){
             (err, result) => {
                 if (err) {
                     console.log(err);
-                    res.status(500).send({success: false, message: "Une erreur s'est produite"});
+                    return res.send({success: false, message: "Une erreur s'est produite"});
                 } else {
-                    res.status(200).send({success: true, message: "Utilisateur créé avec succès"});
+                    console.log(`${new Date().toLocaleString()} - ${username}(${result.insertId}) s'est inscrit`);
+                    return login.login(req, res);
                 }
             }
         );

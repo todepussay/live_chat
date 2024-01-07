@@ -1,0 +1,240 @@
+.dashboard {
+    display: flex;
+    flex-direction: row;
+}
+
+.sidebar {
+    background-color: #f8faff;
+    height: 100vh;
+    width: 400px;
+    padding: 1em;
+    border-right: solid 1px rgb(204, 204, 204);
+}
+
+.header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.header > h1 {
+    font-size: 35px;
+}
+
+.header > ion-icon {
+    font-size: 35px;
+    cursor: pointer;
+}
+
+.search-box {
+    background-color: #eaf2fe;
+    border-radius: 20px;
+    width: 80%;
+    margin: auto;
+    margin-top: 30px;
+    padding: 1em;
+    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-box > ion-icon {
+    font-size: 30px;
+    font-weight: bold;
+    color: #709ce6;
+}
+
+.search-box > input {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    font-size: 20px;
+    width: 80%;
+    margin-left: 10px;
+}
+
+hr {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border: 1px solid #d2d2d2;
+}
+
+.conversations {
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    gap: 1em;
+    margin: auto;
+    height: 77vh;
+    overflow: scroll;
+}
+
+.conversations::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  .conversations::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    background: #888;
+  }
+
+.conversation {
+    margin: 0 auto;
+    width: 80%;
+    background-color: white;
+    padding: 0.7em 1em;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    overflow: hidden;
+    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+}
+
+.active {
+    background: #5B96F7;
+    color: white;
+}
+
+.conversation > .info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.conversation > .info > .name {
+    font-size: 20px;
+}
+
+.conversation > .info > .date {
+    font-size: 20px;
+}
+
+.conversation > .message-box {
+    margin-top: 10px;
+    max-height: 20px;
+    overflow: hidden;
+}
+
+.settings {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 20px
+}
+
+.main {
+    height: 100vh;
+    width: calc(100% - 400px);
+}
+
+.conversation-content {
+    height: 100%;
+}
+
+.user-info {
+    background-color: white;
+    min-height: 5%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 20px;
+    border-bottom: 1px solid rgb(204, 204, 204);
+}
+
+.user-info > .username {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.messages {
+    height: 85%;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: scroll;
+}
+
+.separateur {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px 0
+}
+
+.separateur > span {
+    transform: translateY(+50%);
+    background-color: var(--white-background);
+    text-align: center;
+    padding: 0 20px;
+    font-size: 20px;
+}
+
+.separateur hr {
+    margin: 0;
+    width: 100%;
+}
+
+.message {
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 5px;
+    width: fit-content;
+    max-width: 40%;
+    height: fit-content;
+    word-wrap: break-word;
+}
+
+.message.me {
+    background-color: var(--blue);
+    color: white;
+    align-self: flex-end;
+}
+
+.message.other {
+    background-color: #f0f0f0;
+}
+
+.message > p {
+
+}
+
+.send_message {
+    height: 10%;
+    border-top: solid 1px rgb(204, 204, 204);
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 100px;
+}
+
+.input-send {
+    background-color: var(--white-input);
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+}
+
+.input-send > input {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 1.4em;
+    width: 100%;
+}
+
+.send_message > ion-icon {
+    margin-left: 40px;
+    background-color: var(--blue);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 25px;
+}

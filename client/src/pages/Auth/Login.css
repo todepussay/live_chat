@@ -1,0 +1,91 @@
+#login {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#content {
+    background-color: var(--white);
+    width: 800px;
+    text-align: center;
+    padding: 2em 1em;
+    border-radius: 10px;
+    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+}
+
+#login > #content > h1 {
+    font-size: 2.5em;
+    font-weight: 700;
+    color: var(--white-font);
+    margin-bottom: 1em;
+}
+
+.input-group {
+    margin: auto;
+    padding: 0.4em 0;
+    width: 500px;
+    display: flex;
+    align-items: center;
+    background-color: var(--white-input);
+    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+    border: 2px solid var(--blue);
+    border-radius: 20px;
+    margin-top: 50px;
+}
+
+.input-group > ion-icon {
+    font-size: 1.8em;
+    width: 10%;
+    color: var(--blue);
+}
+
+.input-group > input {
+    width: 80%;
+    font-size: 1.7em;
+    border: transparent 0px;
+    outline: none;
+    background-color: transparent;
+}
+
+.input-group > input::placeholder {
+    color: var(--blue-font);
+}
+
+form > .message {
+    color: var(--red);
+    font-size: 1.2em;
+}
+
+form > .error {
+    color: #d51818;
+    font-size: 1.2em;
+    margin-top: 1em;
+}
+
+form > button {
+    width: 40%;
+    margin: auto;
+    padding: 0.5em 0;
+    border: 2px solid var(--blue);
+    border-radius: 20px;
+    background-color: var(--blue);
+    color: var(--white);
+    font-size: 1.5em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+    margin-top: 40px;
+}
+
+form > button:hover {
+    background-color: var(--white);
+    color: var(--blue);
+}
+
+form > .links {
+    margin-top: 1em;
+    font-size: 1.2em;
+}

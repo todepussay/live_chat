@@ -11,19 +11,19 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// io.on('connection', (socket) => {
-//   console.log('Un utilisateur s\'est connecté');
+io.on("connection", (socket) => {
+    console.log("New client connected");
 
-//   socket.on('message', (message) => {
-//     console.log('Message reçu :', message);
+    // Handle incoming messages
+    socket.on("message", (data) => {
+        // Broadcast the message to all connected clients
+        io.emit("message", data);
+    });
 
-//     io.emit('message', message);
-//   });
-
-//   socket.on('disconnect', () => {
-//     console.log('Un utilisateur s\'est déconnecté');
-//   });
-// });
+    socket.on("disconnect", () => {
+        console.log("Client disconnected");
+    });
+});
 
 const router = require('./router');
 app.use('/api', router);

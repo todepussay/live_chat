@@ -5,5 +5,10 @@ router.post("/signin", require("./route/signin").signin);
 
 router.post("/login", require("./route/login").login);
 
-// Exportez le routeur pour l'utiliser ailleurs
+router.post("/conversations", require("./route/conversations").conversations);
+
+router.post("/messages", require("./route/messages").messages);
+
+router.post("/messages/send", require("./route/messages").add);
+
 module.exports = router;
