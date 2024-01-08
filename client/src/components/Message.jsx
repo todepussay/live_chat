@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { getId, getUsername } from "../services/AuthApi";
-import io from "socket.io-client";
+// import io from "socket.io-client";
 
-const socket = io("http://localhost:5000");
+// const socket = io("http://localhost:5000");
 
 export default function Message({ data }) {
 
@@ -23,7 +23,7 @@ export default function Message({ data }) {
                     setMessages([...messages, res.data.message]);
                     setMessage("");
                     scrollBottom();
-                    socket.emit("message", res.data.message);
+                    // socket.emit("message", res.data.message);
                 }
             })
         }
@@ -58,10 +58,10 @@ export default function Message({ data }) {
             }
         })
 
-        socket.on("message", (newMessage) => {
-            setMessages([...messages, newMessage]);
-            scrollBottom();
-        });
+        // socket.on("message", (newMessage) => {
+        //     setMessages([...messages, newMessage]);
+        //     scrollBottom();
+        // });
 
     }, [data, messages.length])
 
