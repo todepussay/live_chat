@@ -68,7 +68,7 @@ hr {
     flex-direction: column;
     gap: 1em;
     margin: auto;
-    height: 77vh;
+    height: 65vh;
     overflow: scroll;
 }
 
