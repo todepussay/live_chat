@@ -4,25 +4,30 @@ require('dotenv').config();
 const port = process.env.PORT || 5000;
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const server = require('http').createServer();
-const io = require('socket.io')(server);
+const httpServer = require('http').createServer(app);
+const socketIO = require('socket.io');
+const io = socketIO(httpServer, {
+  cors: {
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"]
+  },
+}); 
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-io.on("connection", (socket) => {
-    console.log("New client connected");
+// Gestion des connexions
+io.on('connection', (socket) => {
+  console.log('Nouvelle connexion :', socket.id);
 
-    // Handle incoming messages
-    socket.on("message", (data) => {
-        // Broadcast the message to all connected clients
-        io.emit("message", data);
-    });
+  // Gestion de la réception des messages
+  socket.on('message', (data) => {
+    console.log('Nouveau message reçu :', data);
 
-    socket.on("disconnect", () => {
-        console.log("Client disconnected");
-    });
+    // Diffusion du message à tous les clients connectés
+    io.emit('message', data);
+  });
 });
 
 const router = require('./router');

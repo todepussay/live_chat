@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { getId, getUsername } from "../services/AuthApi";
-// import io from "socket.io-client";
+import io from "socket.io-client";
 
-// const socket = io("http://localhost:5000");
+const socket = io('http://localhost:5000', {
+  path: '/',
+});
 
 export default function Message({ data }) {
 
@@ -23,7 +25,7 @@ export default function Message({ data }) {
                     setMessages([...messages, res.data.message]);
                     setMessage("");
                     scrollBottom();
-                    // socket.emit("message", res.data.message);
+                    socket.emit("message", res.data.message);
                 }
             })
         }
@@ -46,7 +48,6 @@ export default function Message({ data }) {
     }
     
     useEffect(() => {
-
         axios.post("http://localhost:5000/api/messages", { id_conversation: data.conversation_id})
         .then((res) => {
             if(res.data.success) {
@@ -57,13 +58,12 @@ export default function Message({ data }) {
                 setMessages([]);
             }
         })
-
-        // socket.on("message", (newMessage) => {
-        //     setMessages([...messages, newMessage]);
-        //     scrollBottom();
-        // });
-
-    }, [data, messages.length])
+    
+        socket.on("message", (newMessage) => {
+            setMessages(prevMessages => [...prevMessages, newMessage]);
+            scrollBottom();
+        });
+    }, []);
 
     return (
         <div className="conversation-content">

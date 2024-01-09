@@ -34,6 +34,7 @@ function add(req, res){
         [id_user1, id_user2],
         (err, result) => {
             if(result){
+                console.log(`${new Date().toLocaleString()} - Conversation créée entre ${id_user1} et ${id_user2}`);
                 res.json({ success: true, message: "Conversation créée" });
             } else {
                 res.json({ success: false, message: "Erreur lors de la création de la conversation" });
