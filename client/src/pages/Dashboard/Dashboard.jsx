@@ -41,7 +41,10 @@ export default function Dashboard() {
                 <div className="header">
                     <h1>Chats</h1>
                     <ion-icon 
-                    onClick={() => setOngletActif("addUser")}
+                    onClick={() => {
+                        setOngletActif("addUser");
+                        setCurrentConversation({});
+                    }}
                     name="add-circle-outline"></ion-icon>
                 </div>
 

@@ -9,6 +9,8 @@
     width: 400px;
     padding: 1em;
     border-right: solid 1px rgb(204, 204, 204);
+    display: flex;
+    flex-direction: column;
 }
 
 .header {
@@ -32,7 +34,7 @@
     background-color: #eaf2fe;
     border-radius: 20px;
     width: 80%;
-    margin: auto;
+    margin: 0 auto;
     margin-top: 30px;
     padding: 1em;
     box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
@@ -67,9 +69,10 @@ hr {
     justify-content: start;
     flex-direction: column;
     gap: 1em;
-    margin: auto;
-    height: 65vh;
+    margin: 0 auto;
     overflow: scroll;
+    width: 100%;
+    height: 100%;
 }
 
 .conversations::-webkit-scrollbar {
@@ -124,7 +127,7 @@ hr {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    font-size: 20px
+    font-size: 20px;
 }
 
 .main {
@@ -138,9 +141,9 @@ hr {
 
 .user-info {
     background-color: white;
-    min-height: 5%;
+    min-height: 10%;
     display: flex;
-    justify-content: flex-start;
+    justify-content: start;
     align-items: center;
     padding-left: 20px;
     border-bottom: 1px solid rgb(204, 204, 204);
@@ -152,7 +155,7 @@ hr {
 }
 
 .messages {
-    height: 85%;
+    height: 80%;
     padding: 60px;
     display: flex;
     flex-direction: column;
@@ -217,7 +220,7 @@ hr {
 
 .input-send {
     background-color: var(--white-input);
-    padding: 20px;
+    padding: 10px;
     border-radius: 10px;
     width: 80%;
 }
@@ -226,15 +229,93 @@ hr {
     background-color: transparent;
     border: none;
     outline: none;
-    font-size: 1.4em;
+    font-size: 1.2em;
     width: 100%;
 }
 
 .send_message > ion-icon {
-    margin-left: 40px;
+    margin-left: 10px;
     background-color: var(--blue);
     color: white;
-    padding: 20px;
+    padding: 10px;
     border-radius: 10px;
-    font-size: 25px;
+    font-size: 20px;
+}
+
+
+/* ADDUSER */
+
+.addUser {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.addUser > .header {
+    background-color: white;
+    height: 10%;
+    border-bottom: solid 1px rgb(204, 204, 204);
+}
+
+.addUser > .header > .h2 {
+    font-size: 30px;
+    font-weight: bold;
+    padding: 0 20px;
+}
+
+.input-addUser {
+    width: 70%;
+    margin: 0 auto;
+    margin-top: 2em;
+    background-color: var(--white-input);
+    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+    border-radius: 10px;
+}
+
+.input-addUser input {
+    width: 100%;
+    padding: 10px;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    font-size: 20px;
+}
+
+.resultat {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: 1em;
+}
+
+.user {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+}
+
+.user p {
+    font-size: 20px;
+}
+
+.user button {
+    margin-left: 10px;
+    background-color: var(--blue);
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 20px;
+    border: none;
+    display: flex;
+    cursor: pointer;
 }

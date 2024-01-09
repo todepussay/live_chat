@@ -5,7 +5,7 @@ function adduser(req, res){
     const { id_user } = req.body;
 
     db.query(
-        `SELECT DISTINCT u.id as id, u.username as username, u.email as email
+        `SELECT DISTINCT u.id as id, u.email as email
         FROM t_user u
         LEFT JOIN (
             SELECT t_user.id AS user_id
@@ -25,4 +25,22 @@ function adduser(req, res){
     )
 }
 
-module.exports = { adduser };
+function add(req, res){
+
+    const { id_user1, id_user2 } = req.body;
+
+    db.query(
+        `INSERT INTO t_conversation (id_user1, id_user2, create_time, update_time) VALUES (?, ?, NOW(), NOW());`,
+        [id_user1, id_user2],
+        (err, result) => {
+            if(result){
+                res.json({ success: true, message: "Conversation créée" });
+            } else {
+                res.json({ success: false, message: "Erreur lors de la création de la conversation" });
+            }
+        }
+    )
+
+}
+
+module.exports = { adduser, add };

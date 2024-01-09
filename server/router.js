@@ -13,4 +13,6 @@ router.post("/messages/send", require("./route/messages").add);
 
 router.post("/adduser", require("./route/adduser").adduser);
 
+router.post("/adduser/add", require("./route/adduser").add);
+
 module.exports = router;
