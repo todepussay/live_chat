@@ -23,16 +23,15 @@ const io = socketIo(server, {
   }
 });
 
-// Gestion des connexions
+
 io.on('connection', (socket) => {
-  console.log('Nouvelle connexion :', socket.id);
 
-  // Gestion de la réception des messages
-  socket.on('message', (data) => {
-    console.log('Nouveau message reçu :', data);
+  socket.on("connected", (data) => {
+    console.log(`${new Date().toLocaleString()} - Connexion : ${socket.id}, User : ${data.id_user}`);
+  })
 
-    // Diffusion du message à tous les clients connectés
-    io.emit('message', data);
+  socket.on('disconnected', (data) => {
+    console.log(`${new Date().toLocaleString()} - Déconnexion : ${socket.id}, User : ${data.id_user}`);
   });
 });
 

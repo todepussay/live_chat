@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { getId, getUsername } from "../services/AuthApi";
 
-export default function Message({ data }) {
+export default function Message({ socket, data }) {
 
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState("");
@@ -20,7 +20,7 @@ export default function Message({ data }) {
                     setMessages([...messages, res.data.message]);
                     setMessage("");
                     scrollBottom();
-                    // socket.emit("message", res.data.message);
+                    socket.emit("message", res.data.message);
                 }
             })
         }
@@ -47,18 +47,16 @@ export default function Message({ data }) {
         .then((res) => {
             if(res.data.success) {
                 setMessages(res.data.messages);
-                console.log("messages : ", res.data.messages)
                 scrollBottom();
             } else {
                 setMessages([]);
             }
         })
     
-        // socket.on("message", (newMessage) => {
-        //     setMessages(prevMessages => [...prevMessages, newMessage]);
-        //     scrollBottom();
-        // });
-    }, []);
+        socket.on("message", (newMessage) => {
+            console.log("newMessage : ", newMessage)
+        });
+    }, [data]);
 
     return (
         <div className="conversation-content">

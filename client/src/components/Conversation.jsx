@@ -24,7 +24,7 @@ export default function Conversation({ data, setOngletActif, setCurrentConversat
     }
 
     return(
-        <div className={`conversation ${currentConversation.conversation_id === data.conversation_id ? "active" : ""}`} onClick={clickConversation}>
+        <div className={`conversation ${currentConversation?.conversation_id === data.conversation_id ? "active" : ""}`} onClick={clickConversation}>
             <div className="info">
                 <p className="name">{data.other_user_name}</p>
                 <p className="date">{createDate(data.last_update)}</p>

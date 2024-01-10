@@ -8,7 +8,7 @@ import AuthenticatedRoute from "./components/AuthenticatedRoute";
 import Login from "./pages/Auth/Login";
 import Signin from "./pages/Auth/Signin";
 import Logout from "./pages/Auth/Logout";
-import Dashboard from "./pages/Dashboard/Dashboard";
+import DashboardContextProvider from "./pages/Dashboard/Dashboard";
 
 function App() {
 
@@ -21,7 +21,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/logout" element={<Logout />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard" element={<DashboardContextProvider />} />
       </Routes>
     </Auth.Provider>
   );
