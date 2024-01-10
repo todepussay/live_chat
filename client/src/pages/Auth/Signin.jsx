@@ -53,7 +53,7 @@ export default function Signin() {
             return;
         }
 
-        axios.post("http://localhost:5000/api/signin", credentials)
+        axios.post(`http://${process.env.REACT_APP_SERVER_URL}/api/signin`, credentials)
         .then((res) => {
             if(res.data.success){
                 setItem('authToken', res.data.token);

@@ -9,7 +9,7 @@ import AddUser from "../../components/AddUser";
 import Message from "../../components/Message";
 const io = require("socket.io-client");
 
-const socket = io("http://localhost:5000", {
+const socket = io(`http://${process.env.REACT_APP_SERVER_URL}`, {
     id_user: getId()
 });
 
@@ -39,7 +39,7 @@ const DashboardContextProvider = () => {
             }
 
             if(this.state.conversations.length === 0) {
-                axios.post("http://localhost:5000/api/conversations", { id_user: getId()})
+                axios.post(`http://${process.env.REACT_APP_SERVER_URL}/api/conversations`, { id_user: getId()})
                 .then((res) => {
                     if(res.data.success) {
                         this.setState({conversations: res.data.conversations});
@@ -52,6 +52,14 @@ const DashboardContextProvider = () => {
 
         componentWillUnmount(){
             socket.emit("disconnected", { id_user: getId() });
+        }
+
+        componentDidUpdate(){
+            socket.on("message", (newMessage) => {
+                if(this.state.currentConversation.conversation_id === newMessage.id_conversation){
+                    this.setState({currentConversation: {...this.state.currentConversation, last_message_content: newMessage.message, last_update: new Date()}})
+                }
+            })
         }
 
         render(){

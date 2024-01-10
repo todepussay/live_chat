@@ -18,7 +18,7 @@ export function hasAuthenticated() {
 export function login(credentials) {
   console.log("Connexion en cours...")
   return axios
-    .post('http://localhost:5000/api/login', credentials)
+    .post(`http://${process.env.REACT_APP_SERVER_URL}/api/login`, credentials)
     .then(response => {
       if(response.data.success){
         setItem('authToken', response.data.token);

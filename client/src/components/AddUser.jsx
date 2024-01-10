@@ -12,7 +12,7 @@ export default function AddUser(){
     }
 
     const handleClick = (id) => {
-        axios.post("http://localhost:5000/api/adduser/add", { id_user1: getId(), id_user2: id})
+        axios.post(`http://${process.env.REACT_APP_SERVER_URL}/api/adduser/add`, { id_user1: getId(), id_user2: id})
         .then((res) => {
             if(res.data.success){
                 window.location = "/dashboard";
@@ -21,7 +21,7 @@ export default function AddUser(){
     }
 
     useEffect(() => {
-        axios.post("http://localhost:5000/api/adduser", { id_user: getId()})
+        axios.post(`http://${process.env.REACT_APP_SERVER_URL}/api/adduser`, { id_user: getId()})
         .then((res) => {
             if(res.data.success){
                 setUsers(res.data.users);

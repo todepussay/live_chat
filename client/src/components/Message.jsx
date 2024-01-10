@@ -10,7 +10,7 @@ export default function Message({ socket, data }) {
 
     const sendMessage = () => {
         if(message.length > 0){
-            axios.post("http://localhost:5000/api/messages/send", {
+            axios.post(`http://${process.env.REACT_APP_SERVER_URL}/api/messages/send`, {
                 id_conversation: data.conversation_id,
                 id_user: getId(),
                 message: message
@@ -20,7 +20,10 @@ export default function Message({ socket, data }) {
                     setMessages([...messages, res.data.message]);
                     setMessage("");
                     scrollBottom();
-                    socket.emit("message", res.data.message);
+                    socket.emit("message", {
+                        message: res.data.message,
+                        id_receiver: data.other_user_id
+                    });
                 }
             })
         }
@@ -43,7 +46,7 @@ export default function Message({ socket, data }) {
     }
     
     useEffect(() => {
-        axios.post("http://localhost:5000/api/messages", { id_conversation: data.conversation_id})
+        axios.post(`http://${process.env.REACT_APP_SERVER_URL}/api/messages`, { id_conversation: data.conversation_id})
         .then((res) => {
             if(res.data.success) {
                 setMessages(res.data.messages);

@@ -23,15 +23,31 @@ const io = socketIo(server, {
   }
 });
 
+let connectedUsers = {};
+
 
 io.on('connection', (socket) => {
 
   socket.on("connected", (data) => {
     console.log(`${new Date().toLocaleString()} - Connexion : ${socket.id}, User : ${data.id_user}`);
+    connectedUsers[data.id_user] = socket.id;
+    console.log(connectedUsers);
   })
 
   socket.on('disconnected', (data) => {
     console.log(`${new Date().toLocaleString()} - Déconnexion : ${socket.id}, User : ${data.id_user}`);
+    delete connectedUsers[data.id_user];
+    console.log(connectedUsers);
+  });
+
+  socket.on('message', ({ message, id_receiver }) => {
+    console.log(`${new Date().toLocaleString()} - Message envoyé par ${message.id_user} à ${id_receiver}`);
+
+    if(connectedUsers[id_receiver]){
+      console.log(`${new Date().toLocaleString()} - Message reçu par ${id_receiver}`);
+      socket.to(connectedUsers[id_receiver]).emit('message', message);
+    }
+    console.log(connectedUsers);
   });
 });
 
