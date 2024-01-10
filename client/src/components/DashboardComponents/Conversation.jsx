@@ -1,5 +1,6 @@
 import React from "react";
-import { getId } from "../services/AuthApi";
+import { getId } from "../../services/AuthApi";
+import "./Conversation.css";
 
 export default function Conversation({ data, setOngletActif, setCurrentConversation, currentConversation }) {
 

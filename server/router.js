@@ -7,6 +7,8 @@ router.post("/login", require("./route/login").login);
 
 router.post("/conversations", require("./route/conversations").conversations);
 
+router.post("/conversations/delete", require("./route/conversations").conversationDelete);
+
 router.post("/messages", require("./route/messages").messages);
 
 router.post("/messages/send", require("./route/messages").add);

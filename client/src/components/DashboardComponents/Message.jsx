@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import { getId } from "../services/AuthApi";
+import { getId } from "../../services/AuthApi";
+import "./Message.css";
 
-export default function Message({ socket, data }) {
+export default function Message({ socket, data, conversations, setCurrentConversation, setConversations, setOngletActif }) {
 
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState("");
     const messagesContainerRef = useRef(null);
+    const [modalDelete, setModalDelete] = useState(false);
 
     const sendMessage = () => {
         if(message.length > 0){
@@ -19,6 +21,13 @@ export default function Message({ socket, data }) {
                 if(res.data.success) {
                     setMessages([...messages, res.data.message]);
                     setMessage("");
+                    setCurrentConversation({...data, send_message_user: getId(), last_message_content: res.data.message.content, last_update: new Date()});
+                    setConversations(conversations.map((conversation) => {
+                        if(conversation.conversation_id === data.conversation_id){
+                            return {...conversation, send_message_user: getId(), last_message_content: res.data.message.content, last_update: new Date()};
+                        }
+                        return conversation;
+                    }));
                     scrollBottom();
                     socket.emit("message", {
                         message: res.data.message,
@@ -44,6 +53,18 @@ export default function Message({ socket, data }) {
             messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
         }, 0);
     }
+
+    const deleteConversation = () => {
+        axios.post(`http://${process.env.REACT_APP_SERVER_URL}/api/conversations/delete`, { id_conversation: data.conversation_id})
+        .then((res) => {
+            if(res.data.success){
+                setModalDelete(false);
+                setCurrentConversation({});
+                setConversations(conversations.filter((conversation) => conversation.conversation_id !== data.conversation_id));
+                setOngletActif("home");
+            }
+        })
+    }
     
     useEffect(() => {
         axios.post(`http://${process.env.REACT_APP_SERVER_URL}/api/messages`, { id_conversation: data.conversation_id})
@@ -59,8 +80,23 @@ export default function Message({ socket, data }) {
 
     return (
         <div className="conversation-content">
+
+            {modalDelete && (
+                <div className="modal-delete">
+                    <div className="bg-blur"></div>
+                    <div className="modal-content">
+                        <p>Êtes-vous sûr de vouloir supprimer cette conversation et tous les messages ?</p>
+                        <div className="btn-choice">
+                            <button id="yes" onClick={deleteConversation}>Oui, supprimer</button>
+                            <button id="no" onClick={() => setModalDelete(false)}>Non, annuler</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
             <div className="user-info">
                 <p className="username">{data.other_user_name}</p>
+                <ion-icon onClick={() => setModalDelete(true)} name="trash-outline"></ion-icon>
             </div>
 
             <div className="messages" ref={messagesContainerRef}>

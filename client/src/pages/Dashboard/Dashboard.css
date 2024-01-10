@@ -80,46 +80,9 @@ hr {
     height: 8px;
   }
   
-  .conversations::-webkit-scrollbar-thumb {
-    border-radius: 20px;
-    background: #888;
-  }
-
-.conversation {
-    margin: 0 auto;
-    width: 80%;
-    background-color: white;
-    padding: 0.7em 1em;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    cursor: pointer;
-    overflow: hidden;
-    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
-}
-
-.active {
-    background: #5B96F7;
-    color: white;
-}
-
-.conversation > .info {
-    display: flex;
-    justify-content: space-between;
-}
-
-.conversation > .info > .name {
-    font-size: 20px;
-}
-
-.conversation > .info > .date {
-    font-size: 20px;
-}
-
-.conversation > .message-box {
-    margin-top: 10px;
-    max-height: 20px;
-    overflow: hidden;
+.conversations::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  background: #888;
 }
 
 .settings {
@@ -135,187 +98,17 @@ hr {
     width: calc(100% - 400px);
 }
 
-.conversation-content {
+.home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100%;
+    width: 100%;
+    padding: 100px;
 }
 
-.user-info {
-    background-color: white;
-    min-height: 10%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    padding-left: 20px;
-    border-bottom: 1px solid rgb(204, 204, 204);
-}
-
-.user-info > .username {
-    font-size: 30px;
+.home p {
+    font-size: 40px;
     font-weight: bold;
-}
-
-.messages {
-    height: 80%;
-    padding: 60px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    overflow-y: scroll;
-}
-
-.separateur {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin: 20px 0
-}
-
-.separateur > span {
-    transform: translateY(+50%);
-    background-color: var(--white-background);
-    text-align: center;
-    padding: 0 20px;
-    font-size: 20px;
-}
-
-.separateur hr {
-    margin: 0;
-    width: 100%;
-}
-
-.message {
-    padding: 10px 20px;
-    border-radius: 5px;
-    margin-top: 5px;
-    width: fit-content;
-    max-width: 40%;
-    height: fit-content;
-    word-wrap: break-word;
-}
-
-.message.me {
-    background-color: var(--blue);
-    color: white;
-    align-self: flex-end;
-}
-
-.message.other {
-    background-color: #f0f0f0;
-}
-
-.message > p {
-
-}
-
-.send_message {
-    height: 10%;
-    border-top: solid 1px rgb(204, 204, 204);
-    background-color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 100px;
-}
-
-.input-send {
-    background-color: var(--white-input);
-    padding: 10px;
-    border-radius: 10px;
-    width: 80%;
-}
-
-.input-send > input {
-    background-color: transparent;
-    border: none;
-    outline: none;
-    font-size: 1.2em;
-    width: 100%;
-}
-
-.send_message > ion-icon {
-    margin-left: 10px;
-    background-color: var(--blue);
-    color: white;
-    padding: 10px;
-    border-radius: 10px;
-    font-size: 20px;
-}
-
-
-/* ADDUSER */
-
-.addUser {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
-.addUser > .header {
-    background-color: white;
-    height: 10%;
-    border-bottom: solid 1px rgb(204, 204, 204);
-}
-
-.addUser > .header > .h2 {
-    font-size: 30px;
-    font-weight: bold;
-    padding: 0 20px;
-}
-
-.input-addUser {
-    width: 70%;
-    margin: 0 auto;
-    margin-top: 2em;
-    background-color: var(--white-input);
-    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
-    border-radius: 10px;
-}
-
-.input-addUser input {
-    width: 100%;
-    padding: 10px;
-    outline: none;
-    border: none;
-    background-color: transparent;
-    font-size: 20px;
-}
-
-.resultat {
-    width: 80%;
-    margin: 0 auto;
-    margin-top: 2em;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    gap: 1em;
-}
-
-.user {
-    width: 50%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 10px 20px;
-    border-radius: 8px;
-    background: white;
-    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
-}
-
-.user p {
-    font-size: 20px;
-}
-
-.user button {
-    margin-left: 10px;
-    background-color: var(--blue);
-    color: white;
-    padding: 10px;
-    border-radius: 10px;
-    font-size: 20px;
-    border: none;
-    display: flex;
-    cursor: pointer;
+    color: #709ce6;
 }

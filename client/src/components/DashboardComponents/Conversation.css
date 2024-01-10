@@ -1,0 +1,36 @@
+.conversation {
+    margin: 0 auto;
+    width: 80%;
+    background-color: white;
+    padding: 0.7em 1em;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    overflow: hidden;
+    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+}
+
+.active {
+    background: #5B96F7;
+    color: white;
+}
+
+.conversation > .info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.conversation > .info > .name {
+    font-size: 20px;
+}
+
+.conversation > .info > .date {
+    font-size: 20px;
+}
+
+.conversation > .message-box {
+    margin-top: 10px;
+    max-height: 20px;
+    overflow: hidden;
+}

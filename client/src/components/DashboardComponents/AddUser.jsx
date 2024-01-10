@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { getId } from "../services/AuthApi";
+import { getId } from "../../services/AuthApi";
+import "./AddUser.css";
 
 export default function AddUser(){
 

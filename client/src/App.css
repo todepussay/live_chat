@@ -15,3 +15,7 @@
 body {
     background-color: var(--white-background);
 }
+
+ion-icon {
+    z-index: 1;
+}

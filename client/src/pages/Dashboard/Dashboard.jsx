@@ -2,11 +2,11 @@ import React, { useContext } from "react";
 import Auth from "../../contexts/Auth";
 import { getId, getUsername } from "../../services/AuthApi";
 import axios from "axios";
-import Conversation from "../../components/Conversation";
+import Conversation from "../../components/DashboardComponents/Conversation";
 import { Link } from "react-router-dom";
 import "./Dashboard.css";
-import AddUser from "../../components/AddUser";
-import Message from "../../components/Message";
+import AddUser from "../../components/DashboardComponents/AddUser";
+import Message from "../../components/DashboardComponents/Message";
 const io = require("socket.io-client");
 
 const socket = io(`http://${process.env.REACT_APP_SERVER_URL}`, {
@@ -58,11 +58,19 @@ const DashboardContextProvider = () => {
             socket.on("message", (newMessage) => {
                 if(this.state.currentConversation.conversation_id === newMessage.id_conversation){
                     this.setState({currentConversation: {...this.state.currentConversation, last_message_content: newMessage.message, last_update: new Date()}})
-                }
+                } 
+
+                this.setState({conversations: this.state.conversations.map((conversation) => {
+                    if(conversation.conversation_id === newMessage.id_conversation){
+                        return {...conversation, send_message_user: newMessage.id_user, last_message_content: newMessage.content, last_update: new Date()};
+                    }
+                    return conversation;
+                })});
             })
         }
 
         render(){
+            console.log(this.state.ongletActif)
             return (
                 <div className="dashboard">
                     <div className="sidebar">
@@ -93,6 +101,7 @@ const DashboardContextProvider = () => {
                             {
                                 this.state.conversations.length === 0 ? (<p>Vous n'avez aucune conversation pour le moment</p>) : (
                                     this.state.conversations
+                                    .sort((a, b) => new Date(b.last_update) - new Date(a.last_update))
                                     .filter(conversation => conversation.other_user_name.toLowerCase().includes(this.state.search.toLowerCase()))
                                     .map((conversation) => 
                                     <Conversation 
@@ -121,11 +130,21 @@ const DashboardContextProvider = () => {
                         {
                             this.state.ongletActif === "home" ? (
                                 <div className="home">
-                                    <p>Choisissez une conversation pour commencer à chatter</p>
+                                    <p>Choisissez une conversation</p>
                                 </div>
                             ) : this.state.ongletActif === "conversation" ? (
                                 <Message 
                                 data={this.state.currentConversation}
+                                conversations={this.state.conversations}
+                                setCurrentConversation={(conversation) => 
+                                    this.setState({ currentConversation: conversation })
+                                }
+                                setConversations={(conversations) => 
+                                    this.setState({ conversations: conversations })
+                                }
+                                setOngletActif={(onglet) =>
+                                    this.setState({ ongletActif: onglet })
+                                }
                                 socket={socket}
                                 />
                             ) : (
