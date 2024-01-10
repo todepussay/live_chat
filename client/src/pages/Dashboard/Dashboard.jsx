@@ -7,6 +7,11 @@ import { Link } from "react-router-dom";
 import "./Dashboard.css";
 import AddUser from "../../components/AddUser";
 import Message from "../../components/Message";
+const io = require("socket.io-client");
+
+const socket = io("http://127.0.0.1:5000/", {
+
+});
 
 export default function Dashboard() {
     const { isAuthenticated } = useContext(Auth);

@@ -15,7 +15,7 @@ export default function Conversation({ data, setOngletActif, setCurrentConversat
             return `Hier`;
         }
 
-        return `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
+        return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
     }
 
     const clickConversation = () => {
