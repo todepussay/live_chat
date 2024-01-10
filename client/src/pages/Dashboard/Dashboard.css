@@ -28,6 +28,12 @@
 .header > ion-icon {
     font-size: 35px;
     cursor: pointer;
+    opacity: 0.5;
+}
+
+.header > ion-icon:hover {
+    opacity: 1;
+    transition: 0.1s;
 }
 
 .search-box {

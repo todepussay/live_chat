@@ -34,3 +34,28 @@ CREATE TABLE IF NOT EXISTS `t_message` (
 
 ALTER TABLE `t_message` ADD CONSTRAINT `fk_t_message_t_conversation` FOREIGN KEY (`id_conversation`) REFERENCES `t_conversation` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE `t_message` ADD CONSTRAINT `fk_t_message_t_user` FOREIGN KEY (`id_user`) REFERENCES `t_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+
+
+DELIMITER //
+CREATE TRIGGER after_delete_conversation
+AFTER DELETE ON t_conversation
+FOR EACH ROW
+BEGIN
+    DELETE FROM t_message
+    WHERE id_conversation = OLD.id;
+END;
+//
+DELIMITER ;
+
+DELIMITER //
+CREATE TRIGGER after_insert_t_message
+AFTER INSERT ON t_message
+FOR EACH ROW
+BEGIN
+    UPDATE t_conversation
+    SET update_time = NOW()
+    WHERE id_conversation = NEW.id_conversation;
+END;
+//
+DELIMITER ;
