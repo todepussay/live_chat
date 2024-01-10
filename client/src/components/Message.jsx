@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import { getId, getUsername } from "../services/AuthApi";
+import { getId } from "../services/AuthApi";
 
 export default function Message({ socket, data }) {
 
@@ -55,10 +55,6 @@ export default function Message({ socket, data }) {
                 setMessages([]);
             }
         })
-    
-        socket.on("message", (newMessage) => {
-            console.log("newMessage : ", newMessage)
-        });
     }, [data]);
 
     return (

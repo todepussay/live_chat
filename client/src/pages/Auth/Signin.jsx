@@ -65,6 +65,12 @@ export default function Signin() {
         })
     }
 
+    useEffect(() => {
+        if(isAuthenticated) {
+            window.location = "/dashboard";
+        }
+    }, [isAuthenticated]);
+
     return (
         <div id="login">
             <div id="content">

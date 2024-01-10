@@ -3,7 +3,6 @@ import Auth from '../../contexts/Auth';
 import { Link } from 'react-router-dom';
 import "./Login.css";
 import { login } from '../../services/AuthApi';
-import { getItem } from '../../services/LocalStorage';
 
 export default function Login() {
     
@@ -40,11 +39,11 @@ export default function Login() {
         }
     }
 
-    // useEffect(() => {
-    //     if(isAuthenticated) {
-    //         return <Navigate to="/dashboard" />
-    //     }
-    // }, [isAuthenticated]);
+    useEffect(() => {
+        if(isAuthenticated) {
+            return window.location = "/dashboard";
+        }
+    }, [isAuthenticated]);
 
     return (
         <div id='login'>
