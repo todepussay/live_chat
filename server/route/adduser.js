@@ -5,7 +5,7 @@ function adduser(req, res){
     const { id_user } = req.body;
 
     db.query(
-        `SELECT DISTINCT u.id as id, u.email as email
+        `SELECT DISTINCT u.id as id, u.email as email, u.username as username
         FROM t_user u
         LEFT JOIN (
             SELECT t_user.id AS user_id
@@ -35,7 +35,7 @@ function add(req, res){
         (err, result) => {
             if(result){
                 console.log(`${new Date().toLocaleString()} - Conversation créée entre ${id_user1} et ${id_user2}`);
-                res.json({ success: true, message: "Conversation créée" });
+                res.json({ success: true, message: "Conversation créée", conversation_id: result.insertId });
             } else {
                 res.json({ success: false, message: "Erreur lors de la création de la conversation" });
             }

@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import "./Dashboard.css";
 import AddUser from "../../components/DashboardComponents/AddUser";
 import Message from "../../components/DashboardComponents/Message";
+import Settings from "../../components/DashboardComponents/Settings";
 const io = require("socket.io-client");
 
 const socket = io(`http://${process.env.REACT_APP_SERVER_URL}`, {
@@ -120,8 +121,13 @@ const DashboardContextProvider = () => {
                         </div>
 
                         <div className="settings">
-                            <span id="username">Bonjour {getUsername()}</span>
-                            <Link to="/logout">Se deconnecter</Link>
+                            <span id="username">{getUsername()}</span>
+                            <div className="options">
+                                <ion-icon name="settings-outline" onClick={() => this.setState({ongletActif: "settings"})}></ion-icon>
+                                <Link to="/logout">
+                                    <ion-icon name="log-out-outline"></ion-icon>
+                                </Link>
+                            </div>
                         </div>
                         
                     </div>
@@ -147,8 +153,15 @@ const DashboardContextProvider = () => {
                                 }
                                 socket={socket}
                                 />
+                            ) : this.state.ongletActif === "addUser" ? (
+                                <AddUser
+                                conversations={this.state.conversations}
+                                setConversations={(conversations) => 
+                                    this.setState({ conversations: conversations })
+                                }
+                                />
                             ) : (
-                                <AddUser />
+                                <Settings />
                             )
                         }
 

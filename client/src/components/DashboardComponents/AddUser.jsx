@@ -3,7 +3,7 @@ import axios from "axios";
 import { getId } from "../../services/AuthApi";
 import "./AddUser.css";
 
-export default function AddUser(){
+export default function AddUser({ conversations, setConversations }){
 
     const [addUser, setAddUser] = useState("");
     const [users, setUsers] = useState([]);
@@ -12,11 +12,18 @@ export default function AddUser(){
         setAddUser(event.target.value);
     }
 
-    const handleClick = (id) => {
+    const handleClick = (id, username) => {
         axios.post(`http://${process.env.REACT_APP_SERVER_URL}/api/adduser/add`, { id_user1: getId(), id_user2: id})
         .then((res) => {
             if(res.data.success){
-                window.location = "/dashboard";
+                setUsers(users.filter((user) => user.id !== id));
+                setConversations([...conversations, {
+                    conversation_id: res.data.conversation_id,
+                    other_user_id: id,
+                    other_user_name: username,
+                    last_message_content: "",
+                    last_update: new Date()
+                }]);
             }
         })
     }
@@ -47,7 +54,7 @@ export default function AddUser(){
                 .map((user) => (
                     <div className="user" key={user.id}>
                         <p>{user.email}</p>
-                        <button onClick={() => handleClick(user.id)}>
+                        <button onClick={() => handleClick(user.id, user.username)}>
                             <ion-icon name="person-add-outline"></ion-icon>
                         </button>
                     </div>

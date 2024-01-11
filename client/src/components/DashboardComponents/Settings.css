@@ -1,0 +1,14 @@
+.setting-content {
+
+}
+
+.header-setting {
+    background-color: white;
+    min-height: 10%;
+    padding: 0 20px;
+    border-bottom: 1px solid rgb(204, 204, 204);
+}
+
+.header-setting h2 {
+    padding: 20px;
+}

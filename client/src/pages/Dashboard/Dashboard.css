@@ -93,10 +93,27 @@ hr {
 
 .settings {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    flex-direction: column;
     font-size: 20px;
+    padding: 20px;
+}
+
+#username {
+    font-size: 25px;
+}
+
+.options ion-icon {
+    font-size: 30px;
+    margin-right: 20px;
+    cursor: pointer;
+    color: black;
+    opacity: 0.5;
+}
+
+.options ion-icon:hover {
+    opacity: 1;
+    transition: 0.1s;
 }
 
 .main {
