@@ -9,6 +9,7 @@ import Login from "./pages/Auth/Login";
 import Signin from "./pages/Auth/Signin";
 import Logout from "./pages/Auth/Logout";
 import DashboardContextProvider from "./pages/Dashboard/Dashboard";
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
 
@@ -16,6 +17,9 @@ function App() {
 
   return (    
     <Auth.Provider value={{isAuthenticated, setIsAuthenticated}} >
+
+      <Navbar />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />

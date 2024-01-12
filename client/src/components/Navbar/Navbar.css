@@ -1,0 +1,37 @@
+nav {
+    background-color: var(--white);
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    padding: 30px 0;
+}
+
+nav .middle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    gap: 2em;
+}
+
+nav .bottom {
+}
+
+nav .middle .link ion-icon {
+    font-size: 40px;
+    cursor: pointer;
+    color: var(--blue-font);
+}
+
+nav .middle .link ion-icon:hover {
+    color: var(--blue);
+    transition: 0.1s;
+}
+
+nav .middle .link .active-link {
+    color: var(--blue);
+}
