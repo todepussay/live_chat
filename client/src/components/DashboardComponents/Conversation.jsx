@@ -1,6 +1,7 @@
 import React from "react";
 import { getId } from "../../services/AuthApi";
 import "./Conversation.css";
+import { getAvatar } from "../../services/AuthApi";
 
 export default function Conversation({ data, setOngletActif, setCurrentConversation, currentConversation }) {
 
@@ -26,16 +27,21 @@ export default function Conversation({ data, setOngletActif, setCurrentConversat
 
     return(
         <div className={`conversation ${currentConversation?.conversation_id === data.conversation_id ? "active" : ""}`} onClick={clickConversation}>
-            <div className="info">
-                <p className="name">{data.other_user_name}</p>
-                <p className="date">{createDate(data.last_update)}</p>
+            <div className="avatar">
+                <img src={`/asset/avatar/${getAvatar()}`} alt="" />
             </div>
-            <div className="message-box">
-                <p>
-                    {data.send_message_user === getId() ? "Vous: " : ""}
-                    {data.last_message_content ? data.last_message_content : `Vous avez ajouté ${data.other_user_name}`}
-                </p>
-                <p className="notif"></p>
+            <div className="content-info">
+                <div className="info">
+                    <p className="name">{data.other_user_name}</p>
+                    <p className="date">{createDate(data.last_update)}</p>
+                </div>
+                <div className="message-box">
+                    <p>
+                        {data.send_message_user === getId() ? "Vous: " : ""}
+                        {data.last_message_content ? data.last_message_content : `Vous avez ajouté ${data.other_user_name}`}
+                    </p>
+                    <p className="notif"></p>
+                </div>
             </div>
         </div>
     )

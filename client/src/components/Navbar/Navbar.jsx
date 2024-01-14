@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import "./Navbar.css";
 import { Link } from 'react-router-dom';
-import { getId, getUsername } from '../../services/AuthApi';
+import { getAvatar } from '../../services/AuthApi';
 import Auth from '../../contexts/Auth';
 
 export default function Navbar(){
@@ -9,7 +9,7 @@ export default function Navbar(){
     const { isAuthenticated } = useContext(Auth);
     const [ongletActif, setOngletActif] = useState("chat");
 
-    return (
+    return isAuthenticated ? (
         <nav>
             <div className="middle">
                 <Link className='link' to="/dashboard">
@@ -24,10 +24,10 @@ export default function Navbar(){
             </div>
 
             <div className="bottom">
-                <div className="username-information">
-                    <span id="username">{getUsername()}</span>
-                </div>
+                <img src={`/asset/avatar/${getAvatar()}`} alt="" />
             </div>
+
+
         </nav>
-    )
+    ) : null;
 }

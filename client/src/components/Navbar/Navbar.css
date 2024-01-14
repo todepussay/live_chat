@@ -21,6 +21,10 @@ nav .middle {
 nav .bottom {
 }
 
+nav .bottom img {
+    width: 60px;
+}
+
 nav .middle .link ion-icon {
     font-size: 40px;
     cursor: pointer;

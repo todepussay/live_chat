@@ -64,3 +64,10 @@ export function getEmail(){
   const { email } = jwtDecode(token);
   return email;
 }
+
+export function getAvatar(){
+  if(!hasAuthenticated()) return false;
+  const token = getItem('authToken');
+  const { avatar } = jwtDecode(token);
+  return avatar;
+}

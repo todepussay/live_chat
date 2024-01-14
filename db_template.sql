@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS `t_user`(
     `username` varchar(255) NOT NULL,
     `password` varchar(255) NOT NULL,
     `email` varchar(255) NOT NULL,
+    `avatar` varchar(255) DEFAULT `0.png`,
     `create_time` datetime NOT NULL,
     `update_time` datetime NOT NULL,
     PRIMARY KEY (`id`)
@@ -34,7 +35,6 @@ CREATE TABLE IF NOT EXISTS `t_message` (
 
 ALTER TABLE `t_message` ADD CONSTRAINT `fk_t_message_t_conversation` FOREIGN KEY (`id_conversation`) REFERENCES `t_conversation` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE `t_message` ADD CONSTRAINT `fk_t_message_t_user` FOREIGN KEY (`id_user`) REFERENCES `t_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
 
 
 DELIMITER //

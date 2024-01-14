@@ -1,11 +1,10 @@
 .conversation {
     margin: 0 auto;
     width: 80%;
-    background-color: white;
+    background-color: var(--white);
     padding: 0.7em 1em;
     border-radius: 20px;
     display: flex;
-    flex-direction: column;
     cursor: pointer;
     overflow: hidden;
     box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
@@ -16,9 +15,18 @@
     color: white;
 }
 
+.avatar {
+
+}
+
+.avatar > img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
 .conversation > .info {
     display: flex;
-    justify-content: space-between;
+.conversation
 }
 
 .conversation > .info > .name {

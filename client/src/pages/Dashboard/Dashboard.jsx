@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import Auth from "../../contexts/Auth";
-import { getId, getUsername } from "../../services/AuthApi";
+import { getId } from "../../services/AuthApi";
 import axios from "axios";
 import Conversation from "../../components/DashboardComponents/Conversation";
 import { Link } from "react-router-dom";
@@ -37,18 +37,19 @@ const DashboardContextProvider = () => {
         componentDidMount(){
             if(!isAuthenticated) {
                 window.location = "/login";
-            }
+            } else {
 
-            if(this.state.conversations.length === 0) {
-                axios.post(`http://${process.env.REACT_APP_SERVER_URL}/api/conversations`, { id_user: getId()})
-                .then((res) => {
-                    if(res.data.success) {
-                        this.setState({conversations: res.data.conversations});
-                    }
-                })
-            }
+                if(this.state.conversations.length === 0) {
+                    axios.post(`http://${process.env.REACT_APP_SERVER_URL}/api/conversations`, { id_user: getId()})
+                    .then((res) => {
+                        if(res.data.success) {
+                            this.setState({conversations: res.data.conversations});
+                        }
+                    })
+                }
 
-            socket.emit("connected", { id_user: getId() });
+                socket.emit("connected", { id_user: getId() });
+            }
         }
 
         componentWillUnmount(){
@@ -71,7 +72,6 @@ const DashboardContextProvider = () => {
         }
 
         render(){
-            console.log(this.state.ongletActif)
             return (
                 <div className="dashboard">
                     <div className="sidebar">
@@ -100,7 +100,13 @@ const DashboardContextProvider = () => {
 
                         <div className="conversations">
                             {
-                                this.state.conversations.length === 0 ? (<p>Vous n'avez aucune conversation pour le moment</p>) : (
+                                this.state.conversations.length === 0 ? (
+                                    isAuthenticated ? (
+                                        <p>Vous n'avez aucune conversation pour le moment</p>
+                                    ) : (
+                                        <p>Vous n'êtes pas connecté. <Link to="/login">Cliquez ici</Link></p>
+                                    )
+                                ) : (
                                     this.state.conversations
                                     .sort((a, b) => new Date(b.last_update) - new Date(a.last_update))
                                     .filter(conversation => conversation.other_user_name.toLowerCase().includes(this.state.search.toLowerCase()))
@@ -118,16 +124,6 @@ const DashboardContextProvider = () => {
                                     ></Conversation>)
                                 )
                             }
-                        </div>
-
-                        <div className="settings">
-                            <span id="username">{getUsername()}</span>
-                            <div className="options">
-                                <ion-icon name="settings-outline" onClick={() => this.setState({ongletActif: "settings"})}></ion-icon>
-                                <Link to="/logout">
-                                    <ion-icon name="log-out-outline"></ion-icon>
-                                </Link>
-                            </div>
                         </div>
                         
                     </div>
