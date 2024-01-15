@@ -17,7 +17,7 @@ export default function Conversation({ data, setOngletActif, setCurrentConversat
             return `Hier`;
         }
 
-        return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+        return `${date.getDate()}/${date.getMonth() < 10 ? "0" : ""}${date.getMonth() + 1}/${date.getFullYear()}`;
     }
 
     const clickConversation = () => {
@@ -28,7 +28,7 @@ export default function Conversation({ data, setOngletActif, setCurrentConversat
     return(
         <div className={`conversation ${currentConversation?.conversation_id === data.conversation_id ? "active" : ""}`} onClick={clickConversation}>
             <div className="avatar">
-                <img src={`/asset/avatar/${getAvatar()}`} alt="" />
+                <img src={`/asset/avatar/${data.avatar}`} alt="" />
             </div>
             <div className="content-info">
                 <div className="info">

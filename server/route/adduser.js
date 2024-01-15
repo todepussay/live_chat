@@ -5,7 +5,7 @@ function adduser(req, res){
     const { id_user } = req.body;
 
     db.query(
-        `SELECT DISTINCT u.id as id, u.email as email, u.username as username
+        `SELECT DISTINCT u.id as id, u.email as email, u.username as username, u.avatar as avatar
         FROM t_user u
         LEFT JOIN (
             SELECT t_user.id AS user_id

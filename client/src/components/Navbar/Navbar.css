@@ -23,6 +23,7 @@ nav .bottom {
 
 nav .bottom img {
     width: 60px;
+    border-radius: 50%;
 }
 
 nav .middle .link ion-icon {

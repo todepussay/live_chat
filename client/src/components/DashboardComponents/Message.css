@@ -86,18 +86,29 @@
     background-color: white;
     min-height: 10%;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     padding: 0 20px;
     border-bottom: 1px solid rgb(204, 204, 204);
 }
 
-.user-info > .username {
+.user-info img {
+    width: 40px;
+    border-radius: 50%;
+}
+
+.user-info .user-info-box {
+    display: flex;
+    align-items: center;
+}
+
+.user-info .username {
+    margin-left: 10px;
     font-size: 30px;
     font-weight: bold;
 }
 
-.user-info > ion-icon {
+.user-info ion-icon {
     font-size: 30px;
     color: #ce0f0f;
     cursor: pointer;

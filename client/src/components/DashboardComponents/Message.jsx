@@ -95,7 +95,10 @@ export default function Message({ socket, data, conversations, setCurrentConvers
             )}
 
             <div className="user-info">
-                <p className="username">{data.other_user_name}</p>
+                <div className="user-info-box">
+                    <img src={`/asset/avatar/${data.avatar}`} />
+                    <p className="username">{data.other_user_name}</p>
+                </div>
                 <ion-icon onClick={() => setModalDelete(true)} name="trash-outline"></ion-icon>
             </div>
 
@@ -126,7 +129,7 @@ export default function Message({ socket, data, conversations, setCurrentConvers
                                                     messageDate.getFullYear() === new Date().getFullYear()) ? (
                                                         "Hier"
                                                     ) : (
-                                                        `${messageDate.getDate()}/${messageDate.getMonth() + 1}/${messageDate.getFullYear()}`
+                                                        `${messageDate.getDate()}/${messageDate.getMonth() < 10 ? "0" : ""}${messageDate.getMonth() + 1}/${messageDate.getFullYear()}`
                                                     )
                                                 }
                                                 </span>

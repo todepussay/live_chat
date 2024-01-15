@@ -11,7 +11,8 @@ function conversations(req, res){
             u.username AS other_user_name, 
             m.content AS last_message_content, 
             m.id_user AS send_message_user, 
-            m.send_time AS last_update
+            m.send_time AS last_update,
+            u.avatar as avatar
         FROM t_conversation c 
         JOIN t_user u ON (c.id_user1 = u.id OR c.id_user2 = u.id) AND u.id != ?
         LEFT JOIN t_message m ON c.id = m.id_conversation AND m.id = (SELECT MAX(id) FROM t_message WHERE id_conversation = c.id)

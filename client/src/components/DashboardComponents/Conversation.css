@@ -1,6 +1,6 @@
 .conversation {
     margin: 0 auto;
-    width: 80%;
+    width: 300px;
     background-color: var(--white);
     padding: 0.7em 1em;
     border-radius: 20px;
@@ -15,30 +15,46 @@
     color: white;
 }
 
-.avatar {
-
-}
-
 .avatar > img {
     width: 50px;
     height: 50px;
     border-radius: 50%;
 }
-.conversation > .info {
+
+.content-info {
     display: flex;
-.conversation
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    margin-left: 20px;
+    width: 80%;
 }
 
-.conversation > .info > .name {
-    font-size: 20px;
+.content-info .info {
+    display: flex;
 }
 
-.conversation > .info > .date {
-    font-size: 20px;
+.content-info .info .name {
+    text-align: start;
+    font-size: 18px;
 }
 
-.conversation > .message-box {
-    margin-top: 10px;
-    max-height: 20px;
+.content-info .info .date {
+    text-align: end;
+    opacity: 0.8;
+}
+
+.content-info .message-box {
+
+}
+
+.content-info .message-box p {
+    text-align: start;
+    font-size: 16px;
+    max-height: 16px;
     overflow: hidden;
+}
+
+.content-info .message-box .notif {
+
 }
