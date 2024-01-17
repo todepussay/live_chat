@@ -40,12 +40,12 @@ const DashboardContextProvider = () => {
             } else {
 
                 if(this.state.conversations.length === 0) {
-                    axios.post(`http://${process.env.REACT_APP_SERVER_URL}/api/conversations`, { id_user: getId()})
-                    .then((res) => {
-                        if(res.data.success) {
-                            this.setState({conversations: res.data.conversations});
-                        }
-                    })
+                    // axios.post(`http://${process.env.REACT_APP_SERVER_URL}/api/conversations`, { id_user: getId()})
+                    // .then((res) => {
+                    //     if(res.data.success) {
+                    //         this.setState({conversations: res.data.conversations});
+                    //     }
+                    // })
                 }
 
                 socket.emit("connected", { id_user: getId() });

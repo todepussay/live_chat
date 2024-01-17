@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS `t_user`(
     `username` varchar(255) NOT NULL,
     `password` varchar(255) NOT NULL,
     `email` varchar(255) NOT NULL,
-    `avatar` varchar(255) DEFAULT `0.png`,
+    `avatar` varchar(255) DEFAULT '0.png',
     `create_time` datetime NOT NULL,
     `update_time` datetime NOT NULL,
     PRIMARY KEY (`id`)
@@ -17,6 +17,7 @@ CREATE TABLE IF NOT EXISTS `l_relation`(
     `id_user1` INT NOT NULL,
     `id_user2` INT NOT NULL,
     `status` INT NOT NULL,
+    `emit` INT,
     `create_time` datetime NOT NULL,
     `update_time` datetime NOT NULL,
     PRIMARY KEY (`id`)
@@ -40,6 +41,8 @@ CREATE TABLE IF NOT EXISTS `t_right`(
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+INSERT INTO `t_right` (`id`, `name`) VALUES (1, 'admin'), (2, 'member'), (3, 'guest');
+
 CREATE TABLE IF NOT EXISTS `l_group_user`(
     `id` INT NOT NULL AUTO_INCREMENT,
     `id_group` INT NOT NULL,
@@ -56,7 +59,7 @@ ALTER TABLE `l_group_user` ADD CONSTRAINT `fk_l_group_user_t_user` FOREIGN KEY (
 
 CREATE TABLE IF NOT EXISTS `t_message`(
     `id` INT NOT NULL AUTO_INCREMENT,
-    `id_user` INT NOT NULL,
+    `id_user` INT,
     `id_group` INT NOT NULL,
     `system` boolean NOT NULL DEFAULT false,
     `content` TEXT NOT NULL,
@@ -77,26 +80,19 @@ CREATE TABLE IF NOT EXISTS `l_user_message`(
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DELIMITER //
-CREATE TRIGGER after_delete_conversation
-AFTER DELETE ON t_conversation
+CREATE TRIGGER after_update_l_relation
+AFTER UPDATE ON l_relation
 FOR EACH ROW
 BEGIN
-    DELETE FROM t_message
-    WHERE id_conversation = OLD.id;
+    IF NEW.status = 1 THEN
+        INSERT INTO t_group (name, can_change, create_time, update_time) VALUES ("", 0, NOW(), NOW());
+        SET @id_group = LAST_INSERT_ID();
+
+        INSERT INTO l_group_user (id_group, id_user, `right`, create_time, update_time) VALUES (@id_group, NEW.id_user1, 3, NOW(), NOW());
+        INSERT INTO l_group_user (id_group, id_user, `right`, create_time, update_time) VALUES (@id_group, NEW.id_user2, 3, NOW(), NOW());
+
+        INSERT INTO t_message (id_user, id_group, `system`, content, create_time, update_time) VALUES (NULL, @id_group, 1, "Début de la conversation", NOW(), NOW());
+    END IF;
 END;
 //
 DELIMITER ;
-
-DELIMITER //
-CREATE TRIGGER after_insert_t_message
-AFTER INSERT ON t_message
-FOR EACH ROW
-BEGIN
-    UPDATE t_conversation
-    SET update_time = NOW()
-    WHERE id_conversation = NEW.id_conversation;
-END;
-//
-DELIMITER ;
-
-

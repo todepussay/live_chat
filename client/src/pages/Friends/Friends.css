@@ -42,5 +42,100 @@
 
 .friends .main {
     height: 90%;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.filter {
+    display: flex;
+    gap: 1em;
+}
+
+.filter .btn {
+    border: 1px solid transparent;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0.5;
+    user-select: none;
+}
+
+.btn:hover {
+    border: 1px solid black;
+    opacity: 1;
+    transition: 0.2s;
+}
+
+.filter .selected {
+    background-color: var(--success);
+    color: white;
+    border: 1px solid transparent;
+    cursor: default;
+    opacity: 1;
+}
+
+.friends-list {
     width: 100%;
+    margin: 0 auto;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.friends-list .friend {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.friends-list .friend .friend-info {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.friends-list .friend .friend-info img {
+    width: 60px;
+    border-radius: 50%;
+}
+
+.friends-list .friend .friend-info p {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.friends-list .friend .friend-option {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.friends-list .friend .friend-option ion-icon {
+    font-size: 20px;
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    opacity: 0.6;
+    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+}
+
+.friends-list .friend .friend-option ion-icon:hover {
+    opacity: 1;
+    transition: 0.2s;
+    outline: none;
+}
+
+.friends-list .friend .friend-option ion-icon[name="person-add-outline"] {
+    color: var(--success);
+    border: 1px solid var(--success);
+}
+
+.friends-list .friend .friend-option ion-icon[name="person-remove-outline"] {
+    color: var(--danger);
+    border: 1px solid var(--danger);
 }

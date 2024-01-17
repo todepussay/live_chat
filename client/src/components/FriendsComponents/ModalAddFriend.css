@@ -2,6 +2,9 @@
     position: absolute;
     top: 0;
     left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 100;
 }
 
 .ModalAddFriend .bg-modal {
@@ -11,4 +14,94 @@
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);
+}
+
+.ModalAddFriend .modal-content {
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2em;
+    border-radius: 10px;
+    width: 700px;
+    height: 500px;
+    overflow: hidden;
+}
+
+.ModalAddFriend .modal-content .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--white-input);
+    padding-bottom: 1em;
+    font-size: 30px;
+}
+
+.ModalAddFriend .modal-content .modal-header ion-icon {
+    cursor: pointer;
+}
+
+.ModalAddFriend .modal-content .modal-body {
+    padding: 1em 0;
+}
+
+.ModalAddFriend .modal-content .modal-body .input-group {
+    margin: 20px auto;
+}
+
+.ModalAddFriend .modal-content .modal-body .users {
+    overflow: hidden;
+    height: 250px;
+    overflow-y: scroll;
+}
+
+.ModalAddFriend .modal-content .modal-body .users .user {
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: none;
+    font-size: 20px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+.ModalAddFriend .modal-content .modal-body .users .user .user-info {
+    border: none;
+    display: flex;
+    align-items: center;
+}
+
+.ModalAddFriend .modal-content .modal-body .users .user .user-info img {
+    width: 50px;
+}
+
+.ModalAddFriend .modal-content .modal-body .users .user .user-info p {
+    margin-left: 1em;
+}
+
+.ModalAddFriend .modal-content .modal-body .users .user .btn {
+    background-color: var(--success);
+    padding: 10px 20px;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    color: white;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    gap: 1em;
+    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.ModalAddFriend .modal-content .modal-body .users .user .btn ion-icon {
+    font-size: 30px;
+}
+
+.ModalAddFriend .modal-content .modal-body .users .user .btn:hover {
+    background-color: transparent;
+    border: 2px solid var(--success);
+    color: var(--success);
 }

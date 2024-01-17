@@ -11,6 +11,11 @@
     --blue: #5B96F7;
     --blue-font: #709CE6;
     --success: #1ba345;
+    --danger: #e74c3c;
+}
+
+.Toastify__progress-bar--info {
+    background: var(--blue-font) !important;
 }
 
 body {
@@ -24,4 +29,14 @@ body {
 
 ion-icon {
     z-index: 1;
+}
+
+*::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+*::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  background: #888;
 }

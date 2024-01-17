@@ -9,6 +9,8 @@ router.post("/relation/", require("./route/relation").getAllRelation);
 
 router.post("/relation/friends", require("./route/relation").getAllFriends);
 
+router.post("/relation/friends/ask", require("./route/relation").getAllFriendsAndAsk);
+
 router.post("/relation/users", require("./route/relation").getUsers);
 
 router.post("/relation/add", require("./route/relation").addFriend);

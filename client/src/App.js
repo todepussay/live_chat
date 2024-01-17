@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import Home from "./pages/Home/Home";
 import { hasAuthenticated } from "./services/AuthApi";
@@ -11,15 +11,57 @@ import Logout from "./pages/Auth/Logout";
 import DashboardContextProvider from "./pages/Dashboard/Dashboard";
 import Navbar from "./components/Navbar/Navbar";
 import Friends from "./pages/Friends/Friends";
+import io from "socket.io-client";
+import { getId } from "./services/AuthApi";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const socket = io(`http://${process.env.REACT_APP_SERVER_URL}`, {
+    id_user: getId()
+});
 
 function App() {
 
   const [isAuthenticated, setIsAuthenticated] = useState(hasAuthenticated());
 
-  return (    
+  useEffect(() => {
+    socket.emit("connected", { id_user: getId() });
+
+    socket.on("addFriend", () => {
+      toast.info("Vous avez une nouvelle demande d'ami");
+    })
+
+    socket.on("acceptFriend", () => {
+      toast.info("Votre demande d'ami a été accepté");
+    })
+
+    socket.on("denyFriend", () => {
+      toast.info("Votre demande d'ami a été refusé");
+    })
+
+    return () => {
+      socket.emit("disconnected", { id_user: getId() });
+    }
+
+  }, [socket]);
+
+  return (
     <Auth.Provider value={{isAuthenticated, setIsAuthenticated}} >
 
       <Navbar />
+
+      <ToastContainer
+      position="bottom-right"
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="light"
+      />
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -27,7 +69,7 @@ function App() {
         <Route path="/signin" element={<Signin />} />
         <Route path="/logout" element={<Logout />} />
         <Route path="/dashboard" element={<DashboardContextProvider />} />
-        <Route path="/friends" element={<Friends />} />
+        <Route path="/friends" element={<Friends socket={socket} />} />
       </Routes>
     </Auth.Provider>
   );

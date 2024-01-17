@@ -28,7 +28,8 @@ function getAllFriends(req, res){
         SELECT
             u.id AS id,
             u.username AS username,
-            u.avatar AS avatar
+            u.avatar AS avatar,
+            r.status AS status
         FROM
             t_user u
         JOIN
@@ -36,6 +37,40 @@ function getAllFriends(req, res){
         WHERE
             (r.id_user1 = ? OR r.id_user2 = ?)
             AND r.status = 1
+            AND u.id != ?
+        ORDER BY
+            u.username ASC
+        `,
+        [id, id, id],
+        (err, result) => {
+            if(err){
+                res.send({success: false, message: err});
+            } else {
+                res.send({success: true, friends: result});
+            }
+        }
+    )
+}
+
+function getAllFriendsAndAsk(req, res){
+
+    const { id } = req.body;
+
+    db.query(
+        `
+        SELECT
+            u.id AS id,
+            u.username AS username,
+            u.avatar AS avatar,
+            r.status AS status,
+            r.emit as emit
+        FROM
+            t_user u
+        JOIN
+            l_relation r ON (u.id = r.id_user1 OR u.id = r.id_user2)
+        WHERE
+            (r.id_user1 = ? OR r.id_user2 = ?)
+            AND r.status IN (0, 1)
             AND u.id != ?
         ORDER BY
             u.username ASC
@@ -83,8 +118,8 @@ function addFriend(req, res){
     const { id_user_ask, id_user_answer } = req.body;
 
     db.query(
-        `INSERT INTO l_relation (id_user1, id_user2, status, create_time, update_time) VALUES (?, ?, ?, NOW(), NOW())`,
-        [id_user_ask, id_user_answer, 0],
+        `INSERT INTO l_relation (id_user1, id_user2, status, emit, create_time, update_time) VALUES (?, ?, ?, ?, NOW(), NOW())`,
+        [id_user_ask, id_user_answer, 0, id_user_ask],
         (err, result) => {
             if(err){
                 res.send({success: false, message: err});
@@ -131,11 +166,11 @@ function denyFriend(req, res){
 
 function deleteFriend(req, res){
 
-    const { id_user_ask, id_user_answer } = req.body;
+    const { id_user1, id_user2 } = req.body;
 
     db.query(
-        `DELETE FROM l_relation WHERE id_user1 = ? AND id_user2 = ?`,
-        [id_user_ask, id_user_answer],
+        `DELETE FROM l_relation WHERE (id_user1 = ? AND id_user2 = ?) OR (id_user1 = ? AND id_user2 = ?);`,
+        [id_user1, id_user2, id_user2, id_user1],
         (err, result) => {
             if(err){
                 res.send({success: false, message: err});
@@ -149,6 +184,7 @@ function deleteFriend(req, res){
 module.exports = { 
     getAllRelation, 
     getAllFriends,
+    getAllFriendsAndAsk,
     getUsers,
     addFriend, 
     acceptFriend, 

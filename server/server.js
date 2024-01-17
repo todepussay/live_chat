@@ -49,6 +49,46 @@ io.on('connection', (socket) => {
     }
     console.log(connectedUsers);
   });
+
+  socket.on("addFriend", ({ id_user_ask, id_user_answer }) => {
+    console.log(`${new Date().toLocaleString()} - Demande d'ami envoyé par ${id_user_ask} à ${id_user_answer}`);
+
+    if(connectedUsers[id_user_answer]){
+      console.log(`${new Date().toLocaleString()} - Demande reçu par ${id_user_answer}`);
+      socket.to(connectedUsers[id_user_answer]).emit('addFriend', { id_user_ask, id_user_answer });
+    }
+    console.log(connectedUsers);
+  });
+
+  socket.on("acceptFriend", ({ id_user_ask, id_user_answer }) => {
+    console.log(`${new Date().toLocaleString()} - Demande d'ami accepté par ${id_user_answer} à ${id_user_ask}`);
+
+    if(connectedUsers[id_user_ask]){
+      console.log(`${new Date().toLocaleString()} - Demande accepté par ${id_user_ask}`);
+      socket.to(connectedUsers[id_user_ask]).emit('acceptFriend', { id_user_ask, id_user_answer });
+    }
+    console.log(connectedUsers);
+  });
+
+  socket.on("denyFriend", ({ id_user_ask, id_user_answer }) => {
+    console.log(`${new Date().toLocaleString()} - Demande d'ami refusé par ${id_user_answer} à ${id_user_ask}`);
+
+    if(connectedUsers[id_user_ask]){
+      console.log(`${new Date().toLocaleString()} - Demande refusé par ${id_user_ask}`);
+      socket.to(connectedUsers[id_user_ask]).emit('denyFriend', { id_user_ask, id_user_answer });
+    }
+    console.log(connectedUsers);
+  });
+
+  socket.on("deleteFriend", ({ id_user1, id_user2 }) => {
+    console.log(`${new Date().toLocaleString()} - Ami supprimé par ${id_user2} à ${id_user1}`);
+
+    if(connectedUsers[id_user1]){
+      console.log(`${new Date().toLocaleString()} - Ami supprimé par ${id_user1}`);
+      socket.to(connectedUsers[id_user1]).emit('deleteFriend', { id_user1, id_user2 });
+    }
+    console.log(connectedUsers);
+  });
 });
 
 // Routes

@@ -1,0 +1,93 @@
+.ModalDeleteFriend {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 100;
+}
+
+.ModalDeleteFriend .bg-modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.ModalDeleteFriend .modal-content {
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2em;
+    border-radius: 10px;
+    width: 700px;
+    overflow: hidden;
+}
+
+.ModalDeleteFriend .modal-content .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--white-input);
+    padding-bottom: 1em;
+    font-size: 30px;
+}
+
+.ModalDeleteFriend .modal-content .modal-header ion-icon {
+    cursor: pointer;
+}
+
+.ModalDeleteFriend .modal-content .modal-body {
+    padding: 1em 0;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 20px;
+}
+
+.ModalDeleteFriend .modal-content .modal-body .btn-choice {
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.ModalDeleteFriend .modal-content .modal-body .btn-choice button {
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    border: solid 1px transparent;
+}
+
+.ModalDeleteFriend .modal-content .modal-body .btn-choice #yes {
+    background-color: #ce0f0f;
+    color: white;
+}
+
+.ModalDeleteFriend .modal-content .modal-body .btn-choice #no {
+    background-color: #0f9d0f;
+    color: white;
+}
+
+.ModalDeleteFriend .modal-content .modal-body .btn-choice #yes:hover {
+    background-color: white;
+    border: solid 1px #ce0f0f;
+    color: #ce0f0f;
+    transition: 0.1s;
+}
+
+.ModalDeleteFriend .modal-content .modal-body .btn-choice #no:hover {
+    background-color: white;
+    border: solid 1px #0f9d0f;
+    color: #0f9d0f;
+    transition: 0.1s;
+}
