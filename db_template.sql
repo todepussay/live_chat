@@ -28,8 +28,15 @@ ALTER TABLE `l_relation` ADD CONSTRAINT `fk_l_relation_t_user2` FOREIGN KEY (`id
 CREATE TABLE IF NOT EXISTS `t_group`(
     `id` INT NOT NULL AUTO_INCREMENT,
     `name` varchar(255) NOT NULL,
+    `can_change` boolean NOT NULL,
     `create_time` datetime NOT NULL,
     `update_time` datetime NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `t_right`(
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `name` varchar(255) NOT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -37,11 +44,13 @@ CREATE TABLE IF NOT EXISTS `l_group_user`(
     `id` INT NOT NULL AUTO_INCREMENT,
     `id_group` INT NOT NULL,
     `id_user` INT NOT NULL,
+    `right` INT NOT NULL,
     `create_time` datetime NOT NULL,
     `update_time` datetime NOT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+ALTER TABLE `l_group_user` ADD CONSTRAINT `fk_l_group_user_t_right` FOREIGN KEY (`right`) REFERENCES `t_right` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE `l_group_user` ADD CONSTRAINT `fk_l_group_user_t_group` FOREIGN KEY (`id_group`) REFERENCES `t_group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE `l_group_user` ADD CONSTRAINT `fk_l_group_user_t_user` FOREIGN KEY (`id_user`) REFERENCES `t_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
