@@ -32,11 +32,11 @@ nav .middle .link ion-icon {
     color: var(--blue-font);
 }
 
-nav .middle .link ion-icon:hover {
+nav .middle .link:hover ion-icon {
     color: var(--blue);
     transition: 0.1s;
 }
 
-nav .middle .link .active-link {
+nav .middle .active-link ion-icon {
     color: var(--blue);
 }

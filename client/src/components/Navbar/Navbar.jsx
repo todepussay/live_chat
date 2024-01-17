@@ -12,14 +12,14 @@ export default function Navbar(){
     return isAuthenticated ? (
         <nav>
             <div className="middle">
-                <Link className='link' to="/dashboard">
-                    <ion-icon className={ongletActif === "chat" ? "active-link" : ""} name="chatbubbles-outline"></ion-icon>
+                <Link onClick={() => setOngletActif("chat")} className={`link ${ongletActif === "chat" ? "active-link" : ""}`} to="/dashboard">
+                    <ion-icon name="chatbubbles-outline"></ion-icon>
                 </Link>
-                <Link className="link" to="/friends">
-                    <ion-icon className={ongletActif === "friends" ? "active-link" : ""} name="people-outline"></ion-icon>
+                <Link onClick={() => setOngletActif("friends")} className={`link ${ongletActif === "friends" ? "active-link" : ""}`} to="/friends">
+                    <ion-icon name="people-outline"></ion-icon>
                 </Link>
-                <Link className="link" to="settings">
-                    <ion-icon className={ongletActif === "settings" ? "active-link" : ""} name="settings-outline"></ion-icon>
+                <Link onClick={() => setOngletActif("settings")} className={`link ${ongletActif === "settings" ? "active-link" : ""}`} to="settings">
+                    <ion-icon name="settings-outline"></ion-icon>
                 </Link>
             </div>
 

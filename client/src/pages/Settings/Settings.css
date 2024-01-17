@@ -1,0 +1,62 @@
+.Settings {
+    height: 100vh;
+    width: calc(100vw - 100px);
+    overflow: hidden;
+}
+
+.Settings .header {
+    height: 10%;
+    padding: 0 60px;
+}
+
+.Settings h1 {
+    font-size: 40px;
+    font-weight: 600;
+    color: var(--white-font);
+}
+
+.Settings .main {
+    width: 90%;
+    height: 90%;
+    margin: 0 auto;
+}
+
+.onglets {
+    display: flex;
+    gap: 1em;
+}
+
+.onglets .onglet {
+    border: 1px solid transparent;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0.5;
+    user-select: none;
+}
+
+.onglets .onglet:hover {
+    border: 1px solid black;
+    opacity: 1;
+    transition: 0.2s;
+}
+
+.onglets .active {
+    background-color: var(--success);
+    color: white;
+    border: 1px solid transparent;
+    cursor: default;
+    opacity: 1;
+}
+
+.onglets .active:hover {
+    outline: none;
+    border: 1px solid transparent;
+}
+
+.Settings .content {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 20px;
+}

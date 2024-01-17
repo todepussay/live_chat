@@ -11,6 +11,7 @@ import Logout from "./pages/Auth/Logout";
 import DashboardContextProvider from "./pages/Dashboard/Dashboard";
 import Navbar from "./components/Navbar/Navbar";
 import Friends from "./pages/Friends/Friends";
+import Settings from "./pages/Settings/Settings";
 import io from "socket.io-client";
 import { getId } from "./services/AuthApi";
 import { ToastContainer, toast } from 'react-toastify';
@@ -70,6 +71,7 @@ function App() {
         <Route path="/logout" element={<Logout />} />
         <Route path="/dashboard" element={<DashboardContextProvider />} />
         <Route path="/friends" element={<Friends socket={socket} />} />
+        <Route path="/settings" element={<Settings />} />
       </Routes>
     </Auth.Provider>
   );
