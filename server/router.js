@@ -5,16 +5,18 @@ router.post("/signin", require("./route/signin").signin);
 
 router.post("/login", require("./route/login").login);
 
-router.post("/conversations", require("./route/conversations").conversations);
+router.post("/relation/", require("./route/relation").getAllRelation);
 
-router.post("/conversations/delete", require("./route/conversations").conversationDelete);
+router.post("/relation/friends", require("./route/relation").getAllFriends);
 
-router.post("/messages", require("./route/messages").messages);
+router.post("/relation/users", require("./route/relation").getUsers);
 
-router.post("/messages/send", require("./route/messages").add);
+router.post("/relation/add", require("./route/relation").addFriend);
 
-router.post("/adduser", require("./route/adduser").adduser);
+router.post("/relation/accept", require("./route/relation").acceptFriend);
 
-router.post("/adduser/add", require("./route/adduser").add);
+router.post("/relation/deny", require("./route/relation").denyFriend);
+
+router.post("/relation/delete", require("./route/relation").deleteFriend);
 
 module.exports = router;

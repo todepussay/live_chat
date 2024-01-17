@@ -10,6 +10,7 @@ import Signin from "./pages/Auth/Signin";
 import Logout from "./pages/Auth/Logout";
 import DashboardContextProvider from "./pages/Dashboard/Dashboard";
 import Navbar from "./components/Navbar/Navbar";
+import Friends from "./pages/Friends/Friends";
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
         <Route path="/signin" element={<Signin />} />
         <Route path="/logout" element={<Logout />} />
         <Route path="/dashboard" element={<DashboardContextProvider />} />
+        <Route path="/friends" element={<Friends />} />
       </Routes>
     </Auth.Provider>
   );

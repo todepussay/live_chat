@@ -5,7 +5,7 @@ import axios from "axios";
 import Conversation from "../../components/DashboardComponents/Conversation";
 import { Link } from "react-router-dom";
 import "./Dashboard.css";
-import AddUser from "../../components/DashboardComponents/AddUser";
+// import AddUser from "../../components/DashboardComponents/AddUser";
 import Message from "../../components/DashboardComponents/Message";
 import Settings from "../../components/DashboardComponents/Settings";
 const io = require("socket.io-client");
@@ -150,12 +150,13 @@ const DashboardContextProvider = () => {
                                 socket={socket}
                                 />
                             ) : this.state.ongletActif === "addUser" ? (
-                                <AddUser
-                                conversations={this.state.conversations}
-                                setConversations={(conversations) => 
-                                    this.setState({ conversations: conversations })
-                                }
-                                />
+                                // <AddUser
+                                // conversations={this.state.conversations}
+                                // setConversations={(conversations) => 
+                                //     this.setState({ conversations: conversations })
+                                // }
+                                // />
+                                <p>Addsusjndivn</p>
                             ) : (
                                 <Settings />
                             )

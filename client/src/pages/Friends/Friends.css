@@ -1,0 +1,46 @@
+.friends {
+    height: 100vh;
+    width: calc(100vw - 100px);
+    overflow: hidden;
+}
+
+.friends .header {
+    height: 10%;
+    padding: 0 60px;
+}
+
+.friends h1 {
+    font-size: 40px;
+    font-weight: 600;
+    color: var(--white-font);
+}
+
+#add_friend {
+    background-color: var(--success);
+    padding: 10px 20px;
+    border: 1px transparent;
+    border-radius: 5px;
+    color: white;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    gap: 1em;
+    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+}
+
+#add_friend ion-icon {
+    font-size: 30px;
+}
+
+#add_friend:hover {
+    background-color: transparent;
+    border: 2px solid var(--success);
+    color: var(--success);
+}
+
+.friends .main {
+    height: 90%;
+    width: 100%;
+}
