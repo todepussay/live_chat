@@ -9,4 +9,12 @@ const db = mysql.createConnection({
     port: process.env.DB_PORT
 });
 
+// Fonction pour exécuter un ping toutes les 10 secondes
+function keepConnectionAlive() {
+    db.query('SELECT 1');
+  }
+  
+  // Exécuter la fonction de ping toutes les 10 secondes
+setInterval(keepConnectionAlive, 10000);
+
 module.exports = { db };
