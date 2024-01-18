@@ -1,3 +1,31 @@
 .Compte {
 
 }
+
+
+.input  {
+
+}
+
+
+.input-avatar {
+
+}
+
+.input-avatar .new-avatar {
+    width: 200px;
+    height: 200px;
+}
+
+.input-avatar .new-avatar img {
+    width: 100%;
+}
+
+.input-avatar .old-avatar {
+    width: 200px;
+    height: 200px;
+}
+
+.input-avatar .old-avatar img {
+    width: 100%;
+}
