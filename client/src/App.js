@@ -33,11 +33,11 @@ function App() {
     })
 
     socket.on("acceptFriend", () => {
-      toast.info("Votre demande d'ami a été accepté");
+      toast.info("Votre demande d'ami a été acceptée");
     })
 
     socket.on("denyFriend", () => {
-      toast.info("Votre demande d'ami a été refusé");
+      toast.info("Votre demande d'ami a été refusée");
     })
 
     return () => {
