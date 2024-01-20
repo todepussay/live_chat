@@ -60,3 +60,8 @@
     margin: 0 auto;
     margin-top: 20px;
 }
+
+.Settings h2 {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
