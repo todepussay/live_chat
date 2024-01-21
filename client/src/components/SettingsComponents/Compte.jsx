@@ -12,6 +12,14 @@ export default function Compte() {
         setNewAvatar(URL.createObjectURL(e.target.files[0]));
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        if(newAvatar){
+            
+        }
+    }
+
     return(
         <div className="Compte">
 
@@ -50,7 +58,7 @@ export default function Compte() {
                 </div>
             </div>
 
-            <input type="submit" value="Appliquer les changements" />
+            <input onClick={handleSubmit} type="submit" value="Appliquer les changements" />
 
         </div>
     )

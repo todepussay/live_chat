@@ -5,6 +5,8 @@ router.post("/signin", require("./route/signin").signin);
 
 router.post("/login", require("./route/login").login);
 
+router.post("/user/update/compte", require("./route/user").updateCompte);
+
 router.post("/relation/", require("./route/relation").getAllRelation);
 
 router.post("/relation/friends", require("./route/relation").getAllFriends);
