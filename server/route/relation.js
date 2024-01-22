@@ -1,4 +1,6 @@
 const { db } = require('../db');
+const path = require('path');
+const fs = require('fs');
 
 function getAllRelation(req, res){
     
@@ -46,7 +48,19 @@ function getAllFriends(req, res){
             if(err){
                 res.send({success: false, message: err});
             } else {
-                res.send({success: true, friends: result});
+
+                const friends = result.map(friend => {
+                    let img = null;
+                    const imgLocalisation = path.join(__dirname, '../uploads/avatar/' + friend.avatar);
+                    if(fs.existsSync(imgLocalisation)){
+                        const data = fs.readFileSync(imgLocalisation, { encoding: 'base64' });
+                        img = `data:image/png;base64,${data}`;
+                    }
+
+                    return { id: friend.id, username: friend.username, avatar: img, status: friend.status };
+                });
+
+                res.send({success: true, friends: friends});
             }
         }
     )
@@ -80,7 +94,25 @@ function getAllFriendsAndAsk(req, res){
             if(err){
                 res.send({success: false, message: err});
             } else {
-                res.send({success: true, friends: result});
+
+                const friends = result.map(friend => {
+                    let img = null;
+                    const imgLocalisation = path.join(__dirname, '../uploads/avatar/' + friend.avatar);
+                    if(fs.existsSync(imgLocalisation)){
+                        const data = fs.readFileSync(imgLocalisation, { encoding: 'base64' });
+                        img = `data:image/png;base64,${data}`;
+                    }
+
+                    return { 
+                        id: friend.id, 
+                        username: friend.username, 
+                        avatar: img, 
+                        status: friend.status,
+                        emit: friend.emit
+                    };
+                });
+
+                res.send({success: true, friends: friends});
             }
         }
     )
@@ -107,7 +139,19 @@ function getUsers(req, res){
             if(err){
                 res.send({success: false, message: err});
             } else {
-                res.send({success: true, users: result});
+                
+                const users = result.map(user => {
+                    let img = null;
+                    const imgLocalisation = path.join(__dirname, '../uploads/avatar/' + user.avatar);
+                    if(fs.existsSync(imgLocalisation)){
+                        const data = fs.readFileSync(imgLocalisation, { encoding: 'base64' });
+                        img = `data:image/png;base64,${data}`;
+                    }
+
+                    return { id: user.id, username: user.username, email: user.email, avatar: img };
+                });
+
+                res.send({success: true, users: users});
             }
         }
     )

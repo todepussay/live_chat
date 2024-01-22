@@ -135,7 +135,7 @@ export default function Friends({ socket }){
                                 return (
                                     <div className="friend" key={index}>
                                         <div className="friend-info">
-                                            <img src={`/asset/avatar/${friend.avatar}`} alt="friend" />
+                                            <img src={friend.avatar} alt="friend" />
                                             <p>{friend.username}</p>
                                         </div>
                                         <div className="friend-option">

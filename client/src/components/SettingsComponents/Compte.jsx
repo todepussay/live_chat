@@ -53,7 +53,7 @@ export default function Compte() {
                         }
                     </div>
                     <div className="old-avatar">
-                        <img src={`/asset/avatar/${oldAvatar}`} />
+                        <img src={oldAvatar} />
                     </div>
                 </div>
             </div>

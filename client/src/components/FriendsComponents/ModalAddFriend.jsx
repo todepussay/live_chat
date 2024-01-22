@@ -60,7 +60,7 @@ export default function ModalAddFriend({ setModalAddFriend, setFriends, socket }
                                 return (
                                     <div className="user" key={user.id}>
                                         <div className="user-info" key={user.id}>
-                                            <img src={`/asset/avatar/${user.avatar}`} alt="user" />
+                                            <img src={user.avatar} alt="user" />
                                             <p>{user.username} ({user.email})</p>
                                         </div>
                                         <button className="btn" onClick={() => addFriend(user.id)}>

@@ -28,7 +28,7 @@ export default function Conversation({ data, setOngletActif, setCurrentConversat
     return(
         <div className={`conversation ${currentConversation?.conversation_id === data.conversation_id ? "active" : ""}`} onClick={clickConversation}>
             <div className="avatar">
-                <img src={`/asset/avatar/${data.avatar}`} alt="" />
+                <img src={data.avatar} alt="" />
             </div>
             <div className="content-info">
                 <div className="info">

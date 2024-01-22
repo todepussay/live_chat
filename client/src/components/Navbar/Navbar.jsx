@@ -24,7 +24,7 @@ export default function Navbar(){
             </div>
 
             <div className="bottom">
-                <img src={`/asset/avatar/${getAvatar()}`} alt="" />
+                <img src={getAvatar()} alt="Avatar" />
             </div>
 
 

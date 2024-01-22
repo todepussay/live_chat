@@ -4,7 +4,7 @@ const path = require('path');
 
 // Configuration de Multer pour le téléchargement d'avatar
 // const storage = multer.diskStorage({
-//   destination: '../uploads/',
+//   destination: '../uploads/avatar/',
 //   filename: (req, file, cb) => {
 //     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
 //     cb(null, );

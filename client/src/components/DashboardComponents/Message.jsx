@@ -96,7 +96,7 @@ export default function Message({ socket, data, conversations, setCurrentConvers
 
             <div className="user-info">
                 <div className="user-info-box">
-                    <img src={`/asset/avatar/${data.avatar}`} />
+                    <img src={data.avatar} />
                     <p className="username">{data.other_user_name}</p>
                 </div>
                 <ion-icon onClick={() => setModalDelete(true)} name="trash-outline"></ion-icon>
