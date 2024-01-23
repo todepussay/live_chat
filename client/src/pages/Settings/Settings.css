@@ -1,7 +1,7 @@
 .Settings {
     height: 100vh;
     width: calc(100vw - 100px);
-    overflow: hidden;
+    overflow-y: scroll;
 }
 
 .Settings .header {
@@ -40,6 +40,19 @@
     border: 1px solid black;
     opacity: 1;
     transition: 0.2s;
+}
+
+.logout {
+    opacity: 1 !important;
+    margin-left: auto;
+    background-color: var(--danger);
+    color: white;
+}
+
+.logout:hover {
+    background-color: transparent !important;
+    border: 1px solid var(--danger) !important;
+    color: var(--danger) !important;
 }
 
 .onglets .active {

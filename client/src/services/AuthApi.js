@@ -30,8 +30,10 @@ export function login(credentials) {
 }
 
 export function logout() {
+  console.log("logout")
   removeItem('authToken');
-  return <Navigate to="/login" />
+  window.location.reload();
+  return <Navigate to="/login" />;
 }
 
 function tokenIsValid(token){
@@ -70,4 +72,28 @@ export function getAvatar(){
   const token = getItem('authToken');
   const { avatar } = jwtDecode(token);
   return avatar;
+}
+
+export async function updateCompte({ username, password, file }){
+  const token = getItem('authToken');
+  const { id } = jwtDecode(token);
+  const newUsername = username === "" || username === getUsername() ? getUsername() : username;
+  const formData = new FormData();
+  formData.append('id', id);
+  formData.append('username', newUsername);
+  formData.append("email", getEmail());
+  formData.append("password", password);
+  formData.append('file', file);
+
+  return axios
+    .post(`http://${process.env.REACT_APP_SERVER_URL}/api/user/update/compte`, formData)
+    .then((res) => {
+      if(res.data.success){
+        setItem('authToken', res.data.token);
+        window.location.reload();
+        return res.data;
+      } else {
+        return res.data;
+      }
+    });
 }

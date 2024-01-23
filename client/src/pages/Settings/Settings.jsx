@@ -3,6 +3,7 @@ import "./Settings.css";
 import Auth from '../../contexts/Auth';
 import Compte from '../../components/SettingsComponents/Compte';
 import Notification from '../../components/SettingsComponents/Notification';
+import { logout } from '../../services/AuthApi';
 
 export default function Settings() {
 
@@ -29,8 +30,12 @@ export default function Settings() {
                         <span>Compte</span>
                     </div>
 
-                    <div className={`onglet ${ongletActive === "notification" ? "active" : ""}`} onClick={() => setOngletActive('notification')}>
+                    {/* <div className={`onglet ${ongletActive === "notification" ? "active" : ""}`} onClick={() => setOngletActive('notification')}>
                         <span>Notifications</span>
+                    </div> */}
+
+                    <div className="onglet logout" onClick={() => logout()} >
+                        <span>Déconnexion</span>
                     </div>
 
                 </div>
